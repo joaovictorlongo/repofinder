@@ -1,0 +1,18 @@
+<mat-toolbar class="header mat-elevation-z4" color="primary">
+  <div class="container">
+    <span>
+      <a routerLink="/">
+        <i class="material-icons icon-logo"> language </i>
+        <span class="title-logo">Repofinder</span>
+      </a>
+    </span>
+    <form class="header-form">
+      <input type="text" #search placeholder="Digite o repositório" />
+    </form>
+    <button mat-flat-button color="accent" (click)="handleSearch(search.value)">
+      <i class="material-icons">
+        search
+      </i>
+    </button>
+  </div>
+</mat-toolbar>
