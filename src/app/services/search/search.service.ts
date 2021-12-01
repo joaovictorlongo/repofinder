@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { catchError, debounceTime, EMPTY, map, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { GithubApi } from 'src/app/models/Repository.model';
+import { GithubApi, GithubRepository } from 'src/app/models/Repository.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,9 @@ export class SearchService {
 
   baseURL= 'http://api.github.com';
 
-  searchQuery: string = '';
+  @Output() searchQueryObserver : EventEmitter<string> = new EventEmitter();
+
+  @Output() dataChangeObserver: EventEmitter<GithubApi> = new EventEmitter();
 
   constructor(private snackBar: MatSnackBar, private _httpClient: HttpClient)  { }
 
@@ -25,11 +27,9 @@ export class SearchService {
     });
   }
 
-  find(search: string, page: number = 1): Observable<GithubApi> {
-    return this._httpClient.get<GithubApi>(`${this.baseURL}/search/repositories?q=${search}&&page=${page}`).pipe(
-      map(obj => obj),
-      catchError(e => this.errorHandler(e))
-    );
+  find(search: string, page: number = 1) {
+    this._httpClient.get<GithubApi>(`${this.baseURL}/search/repositories?q=${search}&&page=${page}`)
+      .subscribe(response => this.dataChangeObserver.emit(response));
   }
 
   errorHandler(e: HttpErrorResponse): Observable<any> {

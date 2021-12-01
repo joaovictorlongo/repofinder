@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { SearchService } from 'src/app/services/search/search.service';
 import { GithubRepository } from '../../../models/Repository.model';
@@ -20,17 +20,19 @@ export class HomeComponent implements OnInit {
     length: 0
   };
 
-  length: number = 0;
+  @Input() query : string = '';
+
+  @Input() length: number = 0;
+
+  @Input() receiveRepositories: GithubRepository[] = [];
+
+  startIndex: number = 0;
+
+  endIndex: number = 0;
+
   pageSize: number = 30;
 
-  _repositories: GithubRepository[] = [];
-
   constructor(private searchService: SearchService) {}
-
-  trackByRepository (index: number, repository: GithubRepository) {
-    console.log(repository.id)
-    return repository.id;
-  }
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 800) ? 1 : 10;
@@ -40,22 +42,13 @@ export class HomeComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 10;
   }
 
-  handleRepositories(items: GithubRepository[], length: number) {
-    this._repositories = items;
-    console.log(this._repositories);
-    this.length = length;
-  }
-
   OnPageChange(event: PageEvent) {
-    let startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-    if(endIndex > this.length){
-      endIndex = this.length;
+    this.startIndex = event.pageIndex * event.pageSize;
+    this.endIndex = this.startIndex + event.pageSize;
+    if(this.endIndex > this.length){
+      this.endIndex = this.length;
     }
 
-    const query = this.searchService.searchQuery;
-    this.searchService.find(query, event.pageIndex+1).subscribe(
-      response => this.handleRepositories(response.items, response.total_count)
-    );
+    this.searchService.find(this.query, event.pageIndex+1);
   }
 }

@@ -20,10 +20,8 @@ export class HeaderComponent implements OnInit {
   }
 
   handleSearch(query: string, page: number = 1) {
-    this.searchService.searchQuery = query;
-    this.searchService.find(query, page).pipe(debounceTime(1000)).subscribe(
-      response => this.homeComponent.handleRepositories(response.items, response.total_count)
-    );
+    this.searchService.searchQueryObserver.emit(query);
+    this.searchService.find(query, page);
   }
 
 
