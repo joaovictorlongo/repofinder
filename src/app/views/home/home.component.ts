@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { SearchService } from '../../../services/search/search.service';
-import { GithubRepository } from '../../../models/Repository.model';
+import { SearchService } from 'src/app/services/search/search.service';
+import { GithubRepository } from '../../models/Repository.model';
 
 @Injectable({
   providedIn: 'root'

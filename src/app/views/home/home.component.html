@@ -1,0 +1,14 @@
+<mat-paginator [length]="length"[pageSize]="30" (page)="OnPageChange($event)"></mat-paginator>
+
+<div class="card-container">
+  <mat-card class="card mat-elevation-z3" *ngFor="let repository of receiveRepositories">
+    <mat-card-title-group>
+      <mat-card-title class="card-title">{{ repository.name }}</mat-card-title>
+      <mat-card-subtitle>{{ repository.full_name }}</mat-card-subtitle>
+      <img mat-card-sm-image src="{{ repository.owner.avatar_url }}" >
+    </mat-card-title-group>
+    <mat-card-content class="card-description">
+      {{ repository.description }}
+    </mat-card-content>
+  </mat-card>
+</div>

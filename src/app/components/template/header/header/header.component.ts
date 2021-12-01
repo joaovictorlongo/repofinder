@@ -1,7 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { debounceTime } from 'rxjs';
 import { SearchService } from 'src/app/services/search/search.service';
-import { HomeComponent } from 'src/app/views/home/home/home.component';
+import { HomeComponent } from 'src/app/views/home/home.component';
 
 @Injectable({
   providedIn: 'root'
