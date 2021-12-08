@@ -1,5 +1,5 @@
-import { Component, Injectable, OnInit, Input, Output } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { Component, Injectable, OnInit, Input, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { SearchService } from 'src/app/services/search/search.service';
 import { GithubRepository } from '../../models/Repository.model';
 
@@ -22,9 +22,13 @@ export class HomeComponent implements OnInit {
 
   @Input() query : string = '';
 
+  @Input() pageIndex: number = 0;
+
   @Input() length: number = 0;
 
   @Input() receiveRepositories: GithubRepository[] = [];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   startIndex: number = 0;
 
@@ -38,6 +42,10 @@ export class HomeComponent implements OnInit {
     this.breakpoint = (window.innerWidth <= 800) ? 1 : 10;
   }
 
+  ngOnChanges(): void {
+
+  }
+
   onResize(event: any) {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 10;
   }
@@ -48,7 +56,6 @@ export class HomeComponent implements OnInit {
     if(this.endIndex > this.length){
       this.endIndex = this.length;
     }
-
     this.searchService.find(this.query, event.pageIndex+1);
   }
 }

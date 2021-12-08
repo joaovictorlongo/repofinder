@@ -8,6 +8,7 @@ import { SearchService } from './services/search/search.service';
 })
 export class AppComponent {
   query: string = '';
+  pageIndex: number = 0;
   length: number = 0;
 
   repositories: GithubRepository[] = [];
@@ -18,8 +19,9 @@ export class AppComponent {
     this.searchService.searchQueryObserver.subscribe(data => this.query = data);
 
     this.searchService.dataChangeObserver.subscribe(data => {
-      this.repositories = data.items;
+      this.pageIndex = 0;
       this.length = data.total_count;
+      this.repositories = data.items;
     });
   }
 

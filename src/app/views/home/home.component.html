@@ -1,4 +1,4 @@
-<mat-paginator [length]="length"[pageSize]="30" (page)="OnPageChange($event)"></mat-paginator>
+<mat-paginator #paginator [length]="length"[pageSize]="30" [pageIndex]="pageIndex" (page)="OnPageChange($event)"></mat-paginator>
 
 <div class="card-container">
   <mat-card class="card mat-elevation-z3" *ngFor="let repository of receiveRepositories">
