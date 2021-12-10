@@ -10,11 +10,10 @@ import { HomeComponent } from './views/home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HeaderComponent } from './components/template/header/header/header.component';
 import { FooterComponent } from './components/template/footer/footer/footer.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
@@ -27,7 +26,7 @@ import { FooterComponent } from './components/template/footer/footer/footer.comp
     MatCardModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatPaginatorModule,
+    NgxPaginationModule,
     MatGridListModule,
   ],
   bootstrap: [AppComponent],

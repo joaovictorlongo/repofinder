@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PaginationInstance } from 'ngx-pagination';
+import { HeaderComponent } from './components/template/header/header/header.component';
 import { GithubRepository, GithubApi } from './models/Repository.model';
 import { SearchService } from './services/search/search.service';
 
@@ -8,25 +10,27 @@ import { SearchService } from './services/search/search.service';
 })
 export class AppComponent {
   query: string = '';
-  pageIndex: number = 0;
-  length: number = 0;
+  @Input() repositories: GithubRepository[] = [];
 
-  repositories: GithubRepository[] = [];
+  config: PaginationInstance = {
+    itemsPerPage: 30,
+    currentPage: 1,
+    totalItems: 0,
+  };
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit() {
-    this.searchService.searchQueryObserver.subscribe(data => this.query = data);
-
-    this.searchService.dataChangeObserver.subscribe(data => {
-      this.pageIndex = 0;
-      this.length = data.total_count;
-      this.repositories = data.items;
+    this.searchService.searchQueryObserver.subscribe(response => {
+      if (this.query !== response) {
+        this.query = response;
+        this.config.currentPage = 1;
+      }
     });
-  }
-
-  reciverRepositories(event: any) {
-    console.log(event);
+    this.searchService.dataChangeObserver.subscribe(response => {
+      this.config.totalItems = response.total_count;
+      this.repositories = response.items;
+    });
   }
 
 }

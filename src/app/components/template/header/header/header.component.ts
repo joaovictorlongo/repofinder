@@ -1,4 +1,5 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
+import { GithubApi } from 'src/app/models/Repository.model';
 import { SearchService } from 'src/app/services/search/search.service';
 import { HomeComponent } from 'src/app/views/home/home.component';
 
@@ -13,7 +14,7 @@ import { HomeComponent } from 'src/app/views/home/home.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private searchService: SearchService, private homeComponent: HomeComponent) { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
   }

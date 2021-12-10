@@ -1,5 +1,6 @@
-import { Component, Injectable, OnInit, Input, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, Injectable, OnInit, Input } from '@angular/core';
+import { PaginationInstance } from 'ngx-pagination';
+import { HeaderComponent } from 'src/app/components/template/header/header/header.component';
 import { SearchService } from 'src/app/services/search/search.service';
 import { GithubRepository } from '../../models/Repository.model';
 
@@ -14,48 +15,31 @@ import { GithubRepository } from '../../models/Repository.model';
 export class HomeComponent implements OnInit {
   breakpoint: number = 10;
 
-  pageEvent: PageEvent = {
-    pageIndex: 0,
-    pageSize: 0,
-    length: 0
-  };
-
   @Input() query : string = '';
-
-  @Input() pageIndex: number = 0;
-
-  @Input() length: number = 0;
 
   @Input() receiveRepositories: GithubRepository[] = [];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Input() page: number = 1;
+  @Input() total: number = 0;
+  loading: boolean = false;
 
-  startIndex: number = 0;
+  @Input() public config: PaginationInstance = {
+    itemsPerPage: 30,
+    currentPage: 1
+  };
 
-  endIndex: number = 0;
-
-  pageSize: number = 30;
-
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private headerComponent: HeaderComponent) {}
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 800) ? 1 : 10;
-  }
-
-  ngOnChanges(): void {
-
   }
 
   onResize(event: any) {
     this.breakpoint = (event.target.innerWidth <= 800) ? 1 : 10;
   }
 
-  OnPageChange(event: PageEvent) {
-    this.startIndex = event.pageIndex * event.pageSize;
-    this.endIndex = this.startIndex + event.pageSize;
-    if(this.endIndex > this.length){
-      this.endIndex = this.length;
-    }
-    this.searchService.find(this.query, event.pageIndex+1);
+  OnPageChange(page: number) {
+    this.config.currentPage = page;
+    this.searchService.find(this.query, page);
   }
 }

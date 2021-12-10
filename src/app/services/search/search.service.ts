@@ -13,7 +13,6 @@ export class SearchService {
   baseURL= 'http://api.github.com';
 
   @Output() searchQueryObserver : EventEmitter<string> = new EventEmitter();
-
   @Output() dataChangeObserver: EventEmitter<GithubApi> = new EventEmitter();
 
   constructor(private snackBar: MatSnackBar, private _httpClient: HttpClient)  { }
