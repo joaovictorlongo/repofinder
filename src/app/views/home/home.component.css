@@ -1,3 +1,22 @@
+.no-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 90vh;
+}
+
+.my-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #FF4081;
+}
+
 .card-container {
   display: flex;
   flex-direction: column;
@@ -9,12 +28,9 @@
 .card {
   width: 70vw;
   margin-bottom: 2rem;
-  transition: transform 0.2s;
 }
 
 .card:hover {
-  margin-left: 15px;
-  transform: translateX(10px);
   cursor: pointer;
 }
 
@@ -33,6 +49,10 @@ img {
 }
 
 @media only screen and (max-width: 600px) {
+  .my-pagination {
+    justify-content: flex-start;
+  }
+
   img {
     width: 48px;
     height: 48px;

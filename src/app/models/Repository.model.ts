@@ -11,4 +11,5 @@ export interface GithubRepository {
     avatar_url: string;
   };
   description: string;
+  html_url: string;
 }
