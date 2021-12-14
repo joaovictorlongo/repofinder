@@ -14,6 +14,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { HeaderComponent } from './components/template/header/header/header.component';
 import { FooterComponent } from './components/template/footer/footer/footer.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
@@ -28,6 +29,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     NgxPaginationModule,
     MatGridListModule,
+    FormsModule
   ],
   bootstrap: [AppComponent],
 })

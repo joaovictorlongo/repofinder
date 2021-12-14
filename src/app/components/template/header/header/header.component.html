@@ -6,13 +6,13 @@
         <span class="title-logo">Repofinder</span>
       </a>
     </span>
-    <form class="header-form">
+    <form #headerForm="ngForm" class="header-form" (ngSubmit)="handleSearch(search.value)">
       <input type="text" #search placeholder="Digite o repositório" />
+      <button type="submit" mat-flat-button color="accent">
+        <i class="material-icons">
+          search
+        </i>
+      </button>
     </form>
-    <button mat-flat-button color="accent" (click)="handleSearch(search.value)">
-      <i class="material-icons">
-        search
-      </i>
-    </button>
   </div>
 </mat-toolbar>
