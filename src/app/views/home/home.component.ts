@@ -1,6 +1,5 @@
 import { Component, Injectable, OnInit, Input } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { HeaderComponent } from 'src/app/components/template/header/header/header.component';
 import { SearchService } from 'src/app/services/search/search.service';
 import { GithubRepository } from '../../models/Repository.model';
 
@@ -19,16 +18,12 @@ export class HomeComponent implements OnInit {
 
   @Input() receiveRepositories: GithubRepository[] = [];
 
-  @Input() page: number = 1;
-  @Input() total: number = 0;
-  loading: boolean = false;
-
   @Input() public config: PaginationInstance = {
     itemsPerPage: 30,
     currentPage: 1
   };
 
-  constructor(private searchService: SearchService, private headerComponent: HeaderComponent) {}
+  constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 800) ? 1 : 10;

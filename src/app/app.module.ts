@@ -8,7 +8,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from '@angular/material/button';
 import { HomeComponent } from './views/home/home.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HeaderComponent } from './components/template/header/header/header.component';
@@ -25,7 +24,6 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MatSnackBarModule,
     HttpClientModule,
     NgxPaginationModule,
     MatGridListModule,

@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
-import { GithubApi } from 'src/app/models/Repository.model';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search/search.service';
-import { HomeComponent } from 'src/app/views/home/home.component';
 
 @Injectable({
   providedIn: 'root'

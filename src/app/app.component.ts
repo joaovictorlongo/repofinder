@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { HeaderComponent } from './components/template/header/header/header.component';
-import { GithubRepository, GithubApi } from './models/Repository.model';
+import { GithubRepository } from './models/Repository.model';
 import { SearchService } from './services/search/search.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { SearchService } from './services/search/search.service';
 })
 export class AppComponent {
   query: string = '';
-  @Input() repositories: GithubRepository[] = [];
+  repositories: GithubRepository[] = [];
 
   config: PaginationInstance = {
     itemsPerPage: 30,
