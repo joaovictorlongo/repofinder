@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/template/header/header/header.comp
 import { FooterComponent } from './components/template/footer/footer/footer.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgxPaginationModule,
     MatGridListModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   bootstrap: [AppComponent],
 })

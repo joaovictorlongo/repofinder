@@ -26,10 +26,12 @@ export class AppComponent {
         this.config.currentPage = 1;
       }
     });
+
     this.searchService.dataChangeObserver.subscribe(response => {
-      this.config.totalItems = response.total_count;
-      this.repositories = response.items;
-    });
+        this.config.totalItems = response.total_count;
+        this.repositories = response.items;
+      }
+    );
   }
 
 }
