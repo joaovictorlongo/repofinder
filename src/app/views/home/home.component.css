@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.my-pagination /deep/ .ngx-pagination .current {
+.my-pagination .ngx-pagination .current {
   background: #FF4081;
 }
 
