@@ -17,6 +17,7 @@ https://git-repofinder.herokuapp.com/
 Após efetuar o clone do projeto, executar os comandos:
 ```
 npm install
+npm run build
 npm start
 ```
 
