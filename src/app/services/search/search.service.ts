@@ -9,7 +9,7 @@ import { EMPTY, Observable } from 'rxjs';
 })
 export class SearchService {
 
-  baseURL= 'http://api.github.com';
+  baseURL= 'https://api.github.com';
 
   @Output() searchQueryObserver : EventEmitter<string> = new EventEmitter();
   @Output() dataChangeObserver: EventEmitter<GithubApi> = new EventEmitter();
