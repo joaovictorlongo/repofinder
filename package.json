@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "node server",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "dev": "ng serve"
   },
   "engines": {
     "node": "16.13.2",
@@ -31,7 +32,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.0.2",
+    "@angular-devkit/build-angular": "^13.2.5",
     "@angular/cli": "~13.0.2",
     "@angular/compiler-cli": "~13.0.0",
     "@types/node": "^12.11.1",
